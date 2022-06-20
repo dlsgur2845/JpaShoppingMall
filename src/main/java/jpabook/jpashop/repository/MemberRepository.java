@@ -31,4 +31,10 @@ public class MemberRepository {
                 .setParameter("name", name)
                 .getResultList();
     }
+
+//    public void deleteById(Long id) {
+//        em.createQuery("delete from Member m where m.member_id = :id", Member.class)
+//                .setParameter("id", id)
+//                .executeUpdate();
+//    }
 }

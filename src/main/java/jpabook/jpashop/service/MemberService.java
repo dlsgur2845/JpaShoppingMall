@@ -26,6 +26,15 @@ public class MemberService {
         return member.getId();
     }
 
+//    @Transactional
+//    public String delete(Long id, String name) {
+//        Member findMember = memberRepository.findOne(id);
+//        if (name.equals(findMember.getName())){
+//            memberRepository.deleteById(id);
+//            return "Success";
+//        } else return "Failed";
+//    }
+
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByName(member.getName());
         if (!findMembers.isEmpty()){

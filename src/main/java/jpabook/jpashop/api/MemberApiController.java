@@ -5,6 +5,7 @@ import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class MemberApiController {
 
     private final MemberService memberService;
@@ -35,6 +37,27 @@ public class MemberApiController {
     /**
      * DTO를 사용한 v2가 더 좋음
      */
+//    @PostMapping("/api/v2/members/delete")
+//    public RemoveResponse removeMemberV2(@RequestBody @Valid RemoveRequest request) {
+//
+//        log.info(request.getId().toString(), request.getName());
+//        String resultMessage = memberService.delete(request.getId(), request.getName());
+//        return new RemoveResponse(request.getId(), resultMessage);
+//    }
+//
+//    @Data
+//    static class RemoveRequest {
+//        private Long id;
+//        private String name;
+//    }
+//
+//    @Data
+//    @AllArgsConstructor
+//    static class RemoveResponse {
+//        private Long id;
+//        private String resultMessage;
+//    }
+
     @GetMapping("api/v2/members")
     public Result memberV2() {
         List<MemberDto> collect = memberService.findMembers().stream()
