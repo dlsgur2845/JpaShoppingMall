@@ -18,6 +18,8 @@ public class ItemRepository {
             em.persist(item); // 아이템 신규 등록
         } else{
             em.merge(item); // 아이템 업데이트
+            // 들어오지 않는 필드를 null로 업데이트 하기 때문에 위험
+            // 번거롭지만 변경 감지 코드를 작성하는게 안정적이다.
         }
     }
 
