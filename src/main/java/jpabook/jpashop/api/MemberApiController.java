@@ -57,17 +57,6 @@ public class MemberApiController {
         private String name;
     }
 
-
-    @PostMapping("/api/v2/members")
-    public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
-
-        Member member = new Member();
-        member.setName(request.getName());
-
-        Long id = memberService.join(member);
-        return new CreateMemberResponse(id);
-    }
-
     @PutMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMemberV2(@PathVariable("id") Long id,
                                                @RequestBody @Valid UpdateMemberRequest request) {
@@ -87,6 +76,16 @@ public class MemberApiController {
     static class UpdateMemberResponse {
         private Long id;
         private String name;
+    }
+
+    @PostMapping("/api/v2/members")
+    public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
+
+        Member member = new Member();
+        member.setName(request.getName());
+
+        Long id = memberService.join(member);
+        return new CreateMemberResponse(id);
     }
 
     @Data
