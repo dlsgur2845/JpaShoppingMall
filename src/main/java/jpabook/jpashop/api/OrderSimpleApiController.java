@@ -1,11 +1,12 @@
 package jpabook.jpashop.api;
 
-import jpabook.jpashop.repository.OrderSimpleQueryDto;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
     @GetMapping("/api/v1/simple-orders")
     public List<Order> ordersV1() {
@@ -59,9 +61,14 @@ public class OrderSimpleApiController {
         return result;
     }
 
+    /** v3랑 v4 중 어떤게 좋은지는 상황마다 다름
+     * v4는 select가 적기 때문에 네트워크 트래픽은 적게 먹을 수 있으나
+     * (실시간성이 매우 중요한 트래픽 많은 api 아니면 생각보다 차이 미비),
+     * 재사용성이 떨어진다. 같은 말로 v3는 수 많은 API에서 재사용 가능
+     */
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDto> ordersV4() {
-        return orderRepository.findOrderDtos();
+        return orderSimpleQueryRepository.findOrderDtos();
     }
 
     @Data
