@@ -2,6 +2,7 @@ package jpabook.jpashop.repository.order.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 public class OrderItemQueryDto {
@@ -18,4 +19,6 @@ public class OrderItemQueryDto {
         this.orderPrice = orderPrice;
         this.count = count;
     }
+
+
 }
