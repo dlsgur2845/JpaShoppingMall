@@ -46,7 +46,6 @@ public class OrderApiController {
     }
 
     /**
-     * v2 역시 entity가 노출됨.
      * entity가 노출되면 안됨. dto로 감싼다고해서 노출이 완벽히 차단되는 것은 아님.
      * orderItems가 모두 노출됨. 즉, orderItems도 모두 dto로 변경해야함.
      *
