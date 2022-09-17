@@ -6,6 +6,8 @@ spring:
       driver-class-name: org.h2.Driver
 
   jpa:
+#    OSIV 끄면 지연로딩을 직접 해줘야함: 강제 지연로딩, fetch조인 등등...
+    open-in-view: true
     hibernate:
 #      ddl-auto: none
       ddl-auto: create
